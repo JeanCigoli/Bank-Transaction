@@ -25,7 +25,7 @@ public class FindStatisticResource {
 	
 	
 	@GetMapping()
-	public ResponseEntity<Map<Object, Object>> find(@RequestParam int seconds) {
+	public ResponseEntity<Map<Object, Object>> find(@RequestParam(required = false, defaultValue = "60") int seconds) {
 	
 		try {
 			
