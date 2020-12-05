@@ -13,8 +13,6 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
 
 import org.hibernate.annotations.CreationTimestamp;
-
-import java.time.OffsetDateTime;
 import java.util.Date;
 
 @Entity
@@ -34,12 +32,19 @@ public class Transaction {
 	@Column(name = "date")
 	@NotNull(message = "A data não pode ser nula")
 	@PastOrPresent(message = "A data é inválida para a transação")
-	private OffsetDateTime date;
+	private Date date;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@CreationTimestamp
 	@Column(name = "created_at")
 	private Date createdAt;
+	
+	
+	public Transaction(Double value, Date date) {
+		super();
+		this.value = value;
+		this.date = date;
+	}
 
 	public Long getId() {
 		return id;
@@ -57,11 +62,11 @@ public class Transaction {
 		this.value = value;
 	}
 
-	public OffsetDateTime getDate() {
+	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(OffsetDateTime date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.transation.bank.entity.Transaction;
+import com.transation.bank.entity.dto.TransactionRequest;
 import com.transation.bank.service.TransactionService;
 import com.transation.bank.utils.HttpResponse;
 
@@ -27,9 +28,10 @@ public class CreateResource {
 	
 	
 	@PostMapping()
-	public ResponseEntity<Map<Object, Object>> create(@Valid @RequestBody Transaction transaction) {
+	public ResponseEntity<Map<Object, Object>> create(@Valid @RequestBody TransactionRequest transactionRequest) {
 	
 		try {
+			Transaction transaction = new Transaction(transactionRequest.getValor(), transactionRequest.getDataHora());
 			
 			Transaction service = transactionService.create(transaction);
 			
