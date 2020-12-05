@@ -6,11 +6,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
 
-import java.sql.Timestamp;
+import org.hibernate.annotations.CreationTimestamp;
+
+import java.time.OffsetDateTime;
+import java.util.Date;
 
 @Entity
 @Table(name = "tb_transaction")
@@ -28,8 +33,13 @@ public class Transaction {
 
 	@Column(name = "date")
 	@NotNull(message = "A data não pode ser nula")
-	@PastOrPresent(message = "A data é inválida para a transação" )
-	private Timestamp date;
+	@PastOrPresent(message = "A data é inválida para a transação")
+	private OffsetDateTime date;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@CreationTimestamp
+	@Column(name = "created_at")
+	private Date createdAt;
 
 	public Long getId() {
 		return id;
@@ -47,12 +57,20 @@ public class Transaction {
 		this.value = value;
 	}
 
-	public Timestamp getDate() {
+	public OffsetDateTime getDate() {
 		return date;
 	}
 
-	public void setDate(Timestamp date) {
+	public void setDate(OffsetDateTime date) {
 		this.date = date;
+	}
+
+	public Date getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
 	}
 
 }

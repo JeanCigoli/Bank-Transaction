@@ -1,15 +1,13 @@
 package com.transation.bank.resource.transaction;
 
+import java.util.List;
 import java.util.Map;
-
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,23 +18,25 @@ import com.transation.bank.utils.HttpResponse;
 @RestController
 @CrossOrigin
 @RequestMapping("/transacao")
-public class CreateResource {
+public class FindAllResource {
 	
 	@Autowired
 	TransactionService transactionService;
 	
-	
-	@PostMapping()
-	public ResponseEntity<Map<Object, Object>> create(@Valid @RequestBody Transaction transaction) {
+	@GetMapping()
+	public ResponseEntity<Map<Object, Object>> findAll() {
 	
 		try {
 			
-			Transaction service = transactionService.create(transaction);
+			List<Transaction> service = transactionService.findAll();
 			
-			return HttpResponse.success(HttpStatus.CREATED, "created successful", service);
+			return HttpResponse.success(HttpStatus.OK, "request successful", service);
 			
 		} catch (Exception e) {
 			return HttpResponse.error(HttpStatus.INTERNAL_SERVER_ERROR, "internal server error", e.getMessage());
 		} 
+
 	}
+	
+
 }

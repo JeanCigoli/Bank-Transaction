@@ -2,14 +2,23 @@ package com.transation.bank.entity.dto;
 
 public class Statistic {
 
-	private int count;
+	private Long count;
 	private Double sum, avg, min, max;
 
-	public int getCount() {
+	public Statistic(Long count, Double sum, Double avg, Double min, Double max) {
+		super();
+		this.count = count;
+		this.sum = sum == null ? 0 : sum;
+		this.avg = avg == null ? 0 : avg;
+		this.min = min == null ? 0 : min;
+		this.max = max == null ? 0 : max;
+	}
+
+	public Long getCount() {
 		return count;
 	}
 
-	public void setCount(int count) {
+	public void setCount(Long count) {
 		this.count = count;
 	}
 
