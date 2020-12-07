@@ -38,12 +38,14 @@ public class Transaction {
 	@CreationTimestamp
 	@Column(name = "created_at")
 	private Date createdAt;
-	
-	
+
 	public Transaction(Double value, Date date) {
 		super();
 		this.value = value;
 		this.date = date;
+	}
+
+	public Transaction() {
 	}
 
 	public Long getId() {
