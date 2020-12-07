@@ -7,7 +7,7 @@ O desafio era simular uma transação onde era enviado o valor e data, e com iss
 
 ### Para ver a documentação deste projeto [acesse o site](https://docusaurus-bank.vercel.app/)
 
----
+
 
 ## Linguagens e Ferramentas Utilizadas
 
@@ -19,7 +19,6 @@ No Backend foi utilizado:
 * Linguagem Java para desenvolver.
 
 
---- 
 
 Criado em 05/12/2020.
 
